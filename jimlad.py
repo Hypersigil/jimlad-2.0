@@ -14,7 +14,7 @@ class MarkovBot(IRCBot):
     http://github.com/ericflo/yourmomdotcom
     """
     chain_length = 2 #2
-    chattiness = 1 #0.01
+    chattiness = 0.1 #0.01
     max_words = 40 #30
     messages_to_generate = 5
     prefix = 'irc'
@@ -24,7 +24,8 @@ class MarkovBot(IRCBot):
     def __init__(self, *args, **kwargs):
         super(MarkovBot, self).__init__(*args, **kwargs)
 
-        self.redis_conn = redis.Redis(host = '192.168.1.130', port = 6379, db = 0)
+        #self.redis_conn = redis.Redis(host = '192.168.1.130', port = 6379, db = 0)
+        self.redis_conn = redis.Redis()
 
     def make_key(self, k):
         return '-'.join((self.prefix, k))
